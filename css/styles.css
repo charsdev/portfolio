@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+ :root {
+     --bg: #000000;
+     --term-bg: #050505;
+     --border: #ffffff;
+     --text: #ffffff;
+     --text-dim: #888888;
+     --glow: rgba(255, 255, 255, 0.5);
+}
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+}
+
+body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Courier Prime', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+      transition: all 0.2s ease;
+    }
+
+.scanlines {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.3) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 99;
+    opacity: 0.6;
+}
+ #bg-canvas {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     z-index: 0;
+     pointer-events: none;
+}
+ .terminal-window {
+     position: absolute;
+     width: 100%;
+     max-width: 850px;
+     background: rgba(0, 0, 0, 0.85);
+     border: 2px solid var(--border);
+     display: flex;
+     flex-direction: column;
+     cursor: text;
+     z-index: 1;
+     box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+     transition: opacity 0.2s ease, transform 0.2s ease;
+     resize: both;
+     overflow: auto;
+     min-height: 250px;
+     max-height: 95vh;
+}
+
+.terminal-window.maximized {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    border: none;
+    position: fixed;
+    top: 0; left: 0; 
+    resize: none;
+}
+
+ .terminal-modal {
+     position: absolute;
+     width: 90%;
+     max-width: 680px;
+     background: rgba(5, 5, 5, 0.95);
+     border: 2px solid var(--border);
+     display: none;
+     flex-direction: column;
+     z-index: 10;
+     box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+     scrollbar-width: thin;
+     scrollbar-color: #525252 #050505;
+}
+
+.modal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-body::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-color);
+    }
+    .modal-body::-webkit-scrollbar-thumb {
+      background: var(--border-focus);
+      border-radius: 0px; /* Bordes rectos retro */
+    }
+    .modal-body::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-white);
+    }
+    
+/* BARRA SUPERIOR (HEADER) */
+ .terminal-header {
+     background: #ffffff;
+     color: #000000;
+     padding: 6px 12px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     font-weight: bold;
+     font-size: 12px;
+     user-select: none;
+     cursor: grab;
+}
+ .terminal-header:active {
+     cursor: grabbing;
+}
+ .window-controls {
+     display: flex;
+     align-items: center;
+     gap: 4px;
+}
+ .btn-close {
+     display: inline-flex !important;
+     justify-content: center;
+     align-items: center;
+     width: 14px !important;
+     height: 14px !important;
+     border: 1px solid #000000 !important;
+     background: #000000 !important;
+     color: #ffffff !important;
+     font-size: 10px;
+     font-weight: bold;
+     cursor: pointer;
+     line-height: 1;
+     transition: all 0.1s ease;
+}
+ .btn-close:hover {
+     background: #ff3333 !important;
+     color: #ffffff !important;
+     border-color: #ff3333 !important;
+}
+ .terminal-body {
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 16px;
+     flex: 1;
+     min-height: 400px;
+}
+ .modal-body {
+     padding: 20px;
+     max-height: 75vh;
+     overflow-y: auto;
+}
+ .video-container {
+     position: relative;
+     padding-bottom: 56.25%;
+     height: 0;
+     overflow: hidden;
+     max-width: 100%;
+     background: #000;
+     border: 1px solid var(--border);
+     margin: 15px 0;
+}
+ .video-container iframe {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     border: 0;
+}
+ .dynamic-content {
+     padding: 16px;
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
+}
+ .boot-text {
+     white-space: pre-wrap;
+}
+ .neofetch-layout {
+     display: flex;
+     gap: 24px;
+     align-items: flex-start;
+}
+ .logo-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-shrink: 0;
+}
+ 
+ .fetch-info {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
+}
+ .sys-info {
+     border-bottom: 1px dashed var(--border);
+     padding-bottom: 8px;
+}
+ .title {
+     font-size: 15px;
+     font-weight: bold;
+     letter-spacing: 1px;
+}
+ .command-nav {
+     display: flex;
+     gap: 6px;
+     flex-wrap: wrap;
+}
+ .nav-btn {
+     background: transparent;
+     border: 1px solid var(--border);
+     color: var(--text);
+     padding: 4px 8px;
+     font-family: inherit;
+     font-size: 11px;
+     cursor: pointer;
+     transition: all 0.1s ease;
+}
+ .nav-btn:hover, .nav-btn.active {
+     background: var(--border);
+     color: #000000;
+     font-weight: bold;
+}
+ .nav-btn.hr-download {
+     background: #ffffff;
+     color: #000000;
+     font-weight: bold;
+     border: 1px solid #ffffff;
+     text-decoration: none;
+     display: inline-block;
+}
+ .nav-btn.hr-download:hover {
+     background: #cccccc;
+}
+ .prompt-line {
+     color: var(--text-dim);
+     font-size: 12px;
+     margin-bottom: 6px;
+}
+ .cmd-highlight {
+     color: var(--text);
+     font-weight: bold;
+}
+ .info-card {
+     border-left: 2px solid var(--border);
+     padding-left: 10px;
+     margin-bottom: 10px;
+}
+ .info-card.clickable {
+     cursor: pointer;
+     transition: background 0.1s ease;
+}
+ .info-card.clickable:hover {
+     background: rgba(255, 255, 255, 0.08);
+}
+ .info-card h4 {
+     font-size: 12px;
+     font-weight: bold;
+}
+ .info-card p {
+     color: var(--text-dim);
+     font-size: 11px;
+}
+ .cli-input-container {
+     margin-top: auto;
+     display: flex;
+     align-items: center;
+     font-size: 12px;
+     color: var(--text-dim);
+}
+ .cli-prompt {
+     color: var(--text-dim);
+     white-space: nowrap;
+     margin-right: 8px;
+}
+ .input-wrapper {
+     display: inline-flex;
+     align-items: center;
+     position: relative;
+     flex: 1;
+}
+ .typed-text {
+     color: var(--text);
+     white-space: pre;
+}
+ .cli-hidden-input {
+     position: absolute;
+     opacity: 0;
+     width: 100%;
+     height: 100%;
+     left: 0;
+     top: 0;
+     border: none;
+     outline: none;
+     background: transparent;
+     color: transparent;
+     caret-color: transparent;
+     font-family: inherit;
+     font-size: 12px;
+}
+ .cursor {
+     display: inline-block;
+     width: 8px;
+     height: 14px;
+     background: var(--border);
+     vertical-align: middle;
+     animation: blink 0.8s infinite;
+}
+ @keyframes blink {
+     0%, 100% {
+         opacity: 1;
+    }
+     50% {
+         opacity: 0;
+    }
+}
+ #shutdown-overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background: #000000;
+     z-index: 9999;
+     display: none;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     color: #888888;
+     font-family: 'Courier Prime', monospace;
+     text-align: center;
+     gap: 15px;
+}
+ #shutdown-overlay button {
+     background: transparent;
+     border: 1px solid #ffffff;
+     color: #ffffff;
+     padding: 8px 16px;
+     font-family: inherit;
+     cursor: pointer;
+     margin-top: 10px;
+}
+ #shutdown-overlay button:hover {
+     background: #ffffff;
+     color: #000000;
+}
+ .pong-container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 10px;
+     width: 100%;
+}
+ #pongCanvas {
+     background: #000;
+     border: 1px solid #fff;
+     max-width: 100%;
+}
+ .pong-controls-hint {
+     font-size: 11px;
+     color: var(--text-dim);
+     text-align: center;
+}
+    @media (max-width: 650px) {
+      .neofetch-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-img {
+        width: 110px;
+      }
+      .terminal-body {
+        padding: 12px;
+      }
+      .command-nav {
+        justify-content: center;
+      }
+    }
+
+.terminal-window {
+    position: absolute;
+    width: 100%;
+    max-width: 850px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    cursor: text;
+    z-index: 1;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    
+    resize: both;
+    overflow: auto;
+
+    min-width: 320px; 
+    min-height: 250px; 
+    max-height: 90vh; 
+}

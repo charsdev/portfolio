@@ -1,0 +1,79 @@
+<html>
+   <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+   <div class="scanlines"></div>
+   <canvas id="bg-canvas"></canvas>
+   <div id="shutdown-overlay">
+      <p>[ SYSTEM HALTED / POWER OFF ]</p>
+      <p style="font-size: 11px">It is now safe to turn off your computer.</p>
+      <button onclick="rebootSystem()">[ REBOOT SYSTEM ]</button>
+   </div>
+   <div class="terminal-window" id="terminal-window" onclick="focusCLI()">
+      <div class="terminal-header" id="terminal-header">
+         <span>CHARS.exe <span id="live-clock">00:00:00</span>
+         </span>
+         <div class="window-controls">
+            <span class="btn-close" title="Maxize Terminal" onclick="toggleMaximize(event)">▢</span>
+            <span
+               class="btn-close"
+               onclick="closeTerminal(event)"
+               title="Close Terminal"
+               >✕</span
+            >
+         </div>
+      </div>
+      <div class="terminal-body">
+         <main class="dynamic-content" id="content-body"><!-- Content --></main>
+         <div class="cli-input-container">
+
+            <span class="cli-prompt">chars@portfolio:~ $</span>
+            <div class="input-wrapper">
+
+               <span id="typed-text" class="typed-text">Write help to see valid commands.</span>
+               <span class="cursor"></span>
+               <input
+                  type="text"
+                  id="cli-input"
+                  class="cli-hidden-input"
+                  autocomplete="off"
+                  spellcheck="false"
+               />
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="terminal-modal" id="blog-modal-window">
+      <div class="terminal-header" id="blog-modal-header">
+         <span id="blog-modal-title">READER.exe - Post View</span>
+         <div class="window-controls">
+            <span
+               class="btn-close"
+               onclick="closeBlogModal()"
+               title="Cerrar ventana"
+               >✕</span
+            >
+         </div>
+      </div>
+      <div class="modal-body" id="blog-modal-content">
+      </div>
+   </div>
+   <script src="js/blog/blog-manager.js"></script>
+   <script src="js/blog/markdown-parser.js"></script>
+   <script src="js/data/sections.js"></script>
+   <script src="js/systems/audio.js"></script>
+   <script src="js/systems/background.js"></script>
+   <script src="js/systems/shutdown.js"></script>
+   <script src="js/systems/boot.js"></script>
+   <script src="js/systems/cli.js"></script>
+   <script src="js/systems/commands.js"></script>
+   <script src="js/ui/blog-modal.js"></script>
+   <script src="js/ui/terminal-window.js"></script>
+   <script src="js/ui/neofetch.js"></script>
+   <script src="js/minigames/pong.js"></script>
+   <script src="js/main.js"></script>
+</body>
+</html>
