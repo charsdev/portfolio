@@ -100,7 +100,7 @@ function printAbout(activeTab, activeContent) {
               <button class="nav-btn ${activeTab === 'contact' ? 'active' : ''}" onclick="executeCommand('contact')">[4] ./contact.sh</button>
               <button class="nav-btn ${activeTab === 'blog' ? 'active' : ''}" onclick="executeCommand('blog')">[5] ./blog.sh</button>
               <button class="nav-btn ${activeTab === 'pong' ? 'active' : ''}" onclick="executeCommand('pong')"> ./pong</button>
-              <a href="tu-cv.pdf" download class="nav-btn hr-download">📄 [GET_CV.PDF]</a>
+              <a href="https://drive.google.com/file/d/1SN8j2Wv2xjbDoKIKB6G1UCGTWh0i1h7a/view?usp=drive_link" download class="nav-btn hr-download">📄 [GET_CV.PDF]</a>
             </nav>
 
             <div id="tab-content" style="margin-top: 8px;">

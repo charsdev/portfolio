@@ -57,8 +57,8 @@
         case 'get_cv':
         case 'download':
           const link = document.createElement('a');
-          link.href = 'tu-cv.pdf';
-          link.download = 'tu-cv.pdf';
+          link.href = 'https://drive.google.com/file/d/1SN8j2Wv2xjbDoKIKB6G1UCGTWh0i1h7a/view?usp=drive_link';
+          link.download = 'https://drive.google.com/file/d/1SN8j2Wv2xjbDoKIKB6G1UCGTWh0i1h7a/view?usp=drive_link';
           link.click();
           break;
 
