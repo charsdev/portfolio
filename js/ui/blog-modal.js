@@ -36,7 +36,6 @@ function openBlogModal(
 
     function closeBlogModal() {
       playRetroBeep(400, 0.08, 'square');
-      // Detener la reproducción del vídeo al cerrar la ventana modal
       const iframe = blogModalContent.querySelector('iframe');
       if (iframe) {
         iframe.src = iframe.src;
@@ -44,7 +43,6 @@ function openBlogModal(
       blogModal.style.display = "none";
     }
 
-    /* DRAG & DROP PARA LA VENTANA MODAL */
     let isModalDragging = false;
     let modalOffsetX = 0;
     let modalOffsetY = 0;

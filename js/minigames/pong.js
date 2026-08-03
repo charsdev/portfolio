@@ -26,7 +26,6 @@ function startPong() {
   let ballX = pCanvas.width / 2;
   let ballY = pCanvas.height / 2;
 
-  // Ajustamos las velocidades base a píxeles por segundo
   let ballSpeedX = 240 * (Math.random() > 0.5 ? 1 : -1);
   let ballSpeedY = 180 * (Math.random() > 0.5 ? 1 : -1);
   const ballSize = 8;
@@ -150,10 +149,8 @@ function startPong() {
   function gameLoop(timestamp) {
     if (!lastTime) lastTime = timestamp;
     
-    // Convertimos milisegundos a segundos
     let dt = (timestamp - lastTime) / 1000;
     
-    // Prevenir saltos bruscos si la pestaña pierde el foco (max 100ms)
     if (dt > 0.1) dt = 0.1;
 
     lastTime = timestamp;

@@ -8,7 +8,7 @@ function renderBlogList() {
           </div>
         `;
       });
-      html += `<p style="color: var(--text-dim); font-size: 11px; margin-top: 10px;">> Haz clic en un artículo o escribe 'post [id]' para abrirlo en una ventana nueva (ej. 'post 1').</p>`;
+      html += `<p style="color: var(--text-dim); font-size: 11px; margin-top: 10px;">> Click on an article or type 'post [id]' to open it in a new window (e.g., 'post 1').</p>`;
       return html;
   }
 
@@ -61,13 +61,8 @@ const logo = `
     const totalLines = logoSplit.length;
 
     if (!logoPrinted) {
-        // 1. RELLENAR CON ESPACIOS VACÍOS: 
-        // Generamos un bloque del mismo número de líneas vacías para reservar el alto exacto
         pre.textContent = "\n".repeat(totalLines - 1);
 
-        // 2. ANIMACIÓN LÍNEA POR LÍNEA:
-        // En cada iteración reemplazamos el contenido acumulando las líneas visibles
-        // y manteniendo el resto como saltos de línea para preservar la altura.
         for (let i = 0; i < totalLines; i++) {
             const printedLines = logoSplit.slice(0, i + 1).join("\n");
             const remainingPadding = "\n".repeat(totalLines - 1 - i);
@@ -80,7 +75,6 @@ const logo = `
         
         logoPrinted = true;
     } else {
-        // Si ya fue impreso previamente, renderizamos directamente todo el string
         pre.textContent = logoSplit.join("\n");
     }
 }
@@ -127,7 +121,7 @@ async function loadNeofetchView(activeTab = 'about') {
             style="
                 font-size: 5px;
                 line-height: 1.12;
-                margin-top: 20px;
+                margin-top: 56px;
             "></pre>
           </div>
 
