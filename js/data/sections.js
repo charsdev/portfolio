@@ -42,16 +42,16 @@ const sections = {
       `,
 
       contact: `
-        <div class="prompt-line">chars@portfolio:~ $ <span class="cmd-highlight">./connect.sh</span></div>
-        <div class="info-card">
+        <div class="prompt-line">chars@portfolio:~ $ <span class="cmd-highlight">./contact.sh</span></div>
+        <div class="info-card clickable onclick="window.open('mailto:charsdeveloper@gmail.com');">
           <h4>EMAIL</h4>
           <p>charsdeveloper@gmail.com</p>
         </div>
-        <div class="info-card" onclick="window.open('https://linkedin.com/in/carlos-enrique-canavesio-81b13b166', '_blank');">
+        <div class="info-card clickable" onclick="window.open('https://linkedin.com/in/carlos-enrique-canavesio-81b13b166', '_blank');">
           <h4>LINKEDIN</h4>
           <p>linkedin.com/in/carlos-enrique-canavesio-81b13b166</p>
         </div>
-        <div class="info-card" onclick="window.open('https://github.com/charsdev', '_blank');">
+        <div class="info-card clickable" onclick="window.open('https://github.com/charsdev', '_blank');">
           <h4>GITHUB</h4>
           <p>https://github.com/charsdev</p>
         </div>
