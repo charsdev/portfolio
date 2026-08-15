@@ -34,17 +34,16 @@
           break;
 
         case '4':
-        case 'contact':
-        case './contact.sh':
-          loadNeofetchView('contact');
+        case 'certifications':
+        case './certifications.sh':
+        case 'cat certifications':
+          loadNeofetchView('certifications');
           break;
 
         case '5':
-        case 'blog':
-        case './blog.sh':
-        case 'cat blog':
-        case 'ls blog':
-            blog.render();
+        case 'contact':
+        case './contact.sh':
+          loadNeofetchView('contact');
           break;
 
         case 'pong':

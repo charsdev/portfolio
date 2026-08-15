@@ -5,7 +5,6 @@
    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-   <div class="scanlines"></div>
    <canvas id="bg-canvas"></canvas>
    <div id="shutdown-overlay">
       <p>[ SYSTEM HALTED / POWER OFF ]</p>
@@ -46,14 +45,15 @@
          </div>
       </div>
    </div>
+</div>
    <div class="terminal-modal" id="blog-modal-window">
       <div class="terminal-header" id="blog-modal-header">
-         <span id="blog-modal-title">READER.exe - Post View</span>
+         <span id="blog-modal-title">READER.exe - modal View</span>
          <div class="window-controls">
             <span
                class="btn-close"
                onclick="closeBlogModal()"
-               title="Cerrar ventana"
+               title="Close Window"
                >✕</span
             >
          </div>
@@ -71,6 +71,7 @@
    <script src="js/systems/cli.js"></script>
    <script src="js/systems/commands.js"></script>
    <script src="js/ui/blog-modal.js"></script>
+   <script src="js/blog/certification-manager.js"></script>
    <script src="js/ui/terminal-window.js"></script>
    <script src="js/ui/neofetch.js"></script>
    <script src="js/minigames/pong.js"></script>

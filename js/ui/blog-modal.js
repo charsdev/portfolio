@@ -40,6 +40,16 @@ function openBlogModal(
       if (iframe) {
         iframe.src = iframe.src;
       }
+
+      const video = blogModal.querySelector('video');
+  
+      if (video) {
+      video.pause();       // Pausa la reproducción
+      video.currentTime = 0; // Reinicia el video al inicio
+      video.src = "";      // Detiene la descarga/stream en segundo plano
+      video.load();
+      }
+
       blogModal.style.display = "none";
     }
 

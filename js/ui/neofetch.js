@@ -10,8 +10,29 @@ function renderBlogList() {
       });
       html += `<p style="color: var(--text-dim); font-size: 11px; margin-top: 10px;">> Click on an article or type 'post [id]' to open it in a new window (e.g., 'post 1').</p>`;
       return html;
-  }
+}
 
+function renderCertificationsList() {
+  certificationManager.initialize(certifications);
+  certificationManager.render();
+  
+      // let html = `<div class="prompt-line">chars@portfolio:~ $ cat ./certifications.txt</span></div>`;
+      // html += `<div class="cert-grid" id="certGrid">`;
+      // certifications.forEach(cert => {
+      //   html += `
+      //     <div class="cert-card" id=${cert.id}>
+      //        <div class="cert-issuer">${cert.issuer}</div>
+      //         <div class="cert-name">${cert.name}</div>
+      //         <div class="cert-year">${cert.year}</div>
+      //         <button class="btn-open-project-retro" style="align-self: center;" onclick="openCertModal('${cert.target}')">
+      //           [ VIEW CERTIFICATE ]
+      //         </button>
+      //     </div>
+      //   `;
+      // });
+      // html += `</div>`;
+      // return html;
+}
 const logo = `                                                                                                    
               .................                                     .:::::::::------:.              
               :---------------:                                     .+**************+.              
@@ -91,10 +112,10 @@ function printAbout(activeTab, activeContent) {
               <button class="nav-btn ${activeTab === 'about' ? 'active' : ''}" onclick="executeCommand('about')">[1] ./about.sh</button>
               <button class="nav-btn ${activeTab === 'projects' ? 'active' : ''}" onclick="executeCommand('projects')">[2] ./projects.sh</button>
               <button class="nav-btn ${activeTab === 'skills' ? 'active' : ''}" onclick="executeCommand('skills')">[3] ./skills.sh</button>
-              <button class="nav-btn ${activeTab === 'contact' ? 'active' : ''}" onclick="executeCommand('contact')">[4] ./contact.sh</button>
-              <button class="nav-btn ${activeTab === 'blog' ? 'active' : ''}" onclick="executeCommand('blog')">[5] ./blog.sh</button>
+              <button class="nav-btn ${activeTab === 'certifications' ? 'active' : ''}" onclick="executeCommand('certifications')">[4] ./certifications.sh</button>
+              <button class="nav-btn ${activeTab === 'contact' ? 'active' : ''}" onclick="executeCommand('contact')">[5] ./contact.sh</button>
               <button class="nav-btn ${activeTab === 'pong' ? 'active' : ''}" onclick="executeCommand('pong')"> ./pong</button>
-              <a href="https://drive.google.com/file/d/1SN8j2Wv2xjbDoKIKB6G1UCGTWh0i1h7a/view?usp=drive_link" download class="nav-btn hr-download">📄 [GET_CV.PDF]</a>
+              <a href="https://drive.google.com/file/d/1SN8j2Wv2xjbDoKIKB6G1UCGTWh0i1h7a/view?usp=drive_link" target="_blank" class="nav-btn hr-download">[GET_CV.PDF]</a>
             </nav>
 
             <div id="tab-content" style="margin-top: 8px;">
@@ -110,9 +131,9 @@ async function loadNeofetchView(activeTab = 'about') {
       stopPong();
 
       let activeContent = sections[activeTab];
-      if (activeTab === 'blog') {
-        activeContent = renderBlogList();
-      }
+      // if (activeTab === 'blog') {
+      //   activeContent = renderBlogList();
+      // }
 
       output.innerHTML = `
         <div class="neofetch-layout">
@@ -131,4 +152,9 @@ async function loadNeofetchView(activeTab = 'about') {
 
     printLogo();
     printAbout(activeTab, activeContent);
+    
+      if (activeTab === 'certifications') {
+        activeContent = renderCertificationsList();
+      }
+
     }

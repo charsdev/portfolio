@@ -558,9 +558,8 @@ body {
 
 .card-left img {
   max-width: 100%;
-  max-height: 140px;
+  max-height: 500px;
   object-fit: contain;
-  image-rendering: pixelated;
 }
 
 /* COLUMNA DERECHA: INFORMACIÓN */
@@ -581,7 +580,6 @@ body {
 .card-right .engine-subtitle {
   color: #888888;
   font-size: 11px;
-  margin-top: -6px;
 }
 
 .card-right .desc {
@@ -621,3 +619,83 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Grid y Tarjetas */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.cert-card {
+  --corner-size: 12px; /* Tamaño de los brazos de las esquinas */
+  --corner-gap: 5px;   /* Separación entre la tarjeta y las esquinas */
+  --corner-thick: 2px; /* Grosor de las esquinas */
+
+  background-color: #000;
+  border: 1px solid #fff;
+  padding: 15px;
+  position: relative;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+}
+
+/* Pseudo-elemento que genera las esquinas mediante CSS Mask */
+.cert-card::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--corner-gap));
+  left: calc(-1 * var(--corner-gap));
+  right: calc(-1 * var(--corner-gap));
+  bottom: calc(-1 * var(--corner-gap));
+  
+  border: var(--corner-thick) solid #ffffff;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+
+  /* Máscara que recorta el borde dejando únicamente las 4 esquinas */
+  -webkit-mask: conic-gradient(
+    at var(--corner-size) var(--corner-size),
+    #0000 75%,
+    #000 0
+  ) 0 0 / calc(100% - var(--corner-size)) calc(100% - var(--corner-size));
+  
+  mask: conic-gradient(
+    at var(--corner-size) var(--corner-size),
+    #0000 75%,
+    #000 0
+  ) 0 0 / calc(100% - var(--corner-size)) calc(100% - var(--corner-size));
+}
+
+/* Efecto al pasar el cursor */
+.cert-card:hover {
+  transform: translateY(-2px);
+}
+
+.cert-card:hover::before {
+  opacity: 1;
+}
+
+.cert-issuer {
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.cert-name {
+  font-size: 0.7rem;
+  color: #ccc;
+  text-align: center;
+}
+
+.cert-year {
+  font-size: 0.7rem;
+  color: grey;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
