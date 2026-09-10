@@ -296,7 +296,7 @@ const sections = {
     description: "3D Action RPG roguelike built with Unreal Engine's Gameplay Ability System (GAS). Features dynamic horde spawning, dynamic difficulty scaling, modular combat abilities, and a roguelike progression system.",
     systems: ["Gameplay Ability System (GAS)", "Wave Enemy Spawner", "Combat & Leveling Pipeline", "AI Behavior Trees"],
     tech: "C++ · GAS · AI Architecture · RPG Systems",
-    video: "assets/videos/horde-combat.mp4",
+    video: "https://www.youtube.com/watch?v=f3km_EQQGgg",
     github: ''
   },
   "boot-protocol": {
