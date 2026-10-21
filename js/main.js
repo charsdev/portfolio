@@ -4,12 +4,12 @@ async function initialize() {
     if(sessionStorage.getItem("boot-complete"))
     {
         loadNeofetchView("about");
-        focusCLI();
+        //focusCLI();
     }
     else
     {
         await bootSequence();
-        focusCLI();
+        //focusCLI();
     }
 }
 

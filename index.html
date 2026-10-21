@@ -11,7 +11,7 @@
       <p style="font-size: 11px">It is now safe to turn off your computer.</p>
       <button onclick="rebootSystem()">[ REBOOT SYSTEM ]</button>
    </div>
-   <div class="terminal-window" id="terminal-window" onclick="focusCLI()">
+   <div class="terminal-window" id="terminal-window" >
       <div class="terminal-header" id="terminal-header">
          <span>CHARS.exe <span id="live-clock">00:00:00</span>
          </span>
@@ -29,7 +29,7 @@
          <main class="dynamic-content" id="content-body"><!-- Content --></main>
          <div class="cli-input-container">
 
-            <span class="cli-prompt">chars@portfolio:~ $</span>
+            <span class="cli-prompt" onclick="focusCLI()">chars@portfolio:~ $</span>
             <div class="input-wrapper">
 
                <span id="typed-text" class="typed-text">Write help to see valid commands.</span>
